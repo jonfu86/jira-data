@@ -1,0 +1,17 @@
+{
+    "name": "jira-data",
+    "version": "0.1.0",
+    "dependencies": {
+        "montage": "montagejs/montage.git",
+        "digit": "~0.5.0",
+        "montage-data": "montagestudio/montage-data"
+    },
+    "devDependencies": {
+        "montage-testing": "~0.4.0"
+    },
+    "exclude": [
+        "run-tests.html",
+        "test"
+    ],
+    "bundle": [ "ui/main.reel" ]
+}

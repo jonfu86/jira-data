@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Main</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script type="text/montage-serialization">
+        {
+            "owner": {
+                "properties": {
+                    "element": {"#": "main"},
+                    "service": {"@": "service"}
+                }
+            },
+            "userInput": {
+                "prototype": "digit/ui/text-field.reel",
+                "properties": {
+                    "element": {"#": "user-input"}
+                }
+            },
+            "passwordInput": {
+                "prototype": "digit/ui/text-field.reel",
+                "properties": {
+                    "element": {"#": "password-input"}
+                }
+            },
+            "repetition": {
+                "prototype": "montage/ui/repetition.reel",
+                "properties": {
+                    "element": {"#": "repetition"}
+                },
+                "bindings": {
+                    "content": {"<-": "@owner.issues"}
+                }
+            },
+            "issueKey": {
+                "prototype": "montage/ui/text.reel",
+                "properties": {
+                    "element": {"#": "key"}
+                },
+                "bindings": {
+                    "value": {"<-": "@repetition:iteration.object.key"}
+                }
+            },
+            "issueSummary": {
+                "prototype": "montage/ui/text.reel",
+                "properties": {
+                    "element": {"#": "summary"}
+                },
+                "bindings": {
+                    "value": {"<-": "@repetition:iteration.object.summary"}
+                }
+            },
+            "service": {
+                "prototype": "logic/jira-service"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div data-montage-id="main" data-montage-skin="light" class="Main">
+        <label for="user-input">User:</label>
+        <div data-montage-id="user-input"></div>
+        <label for="password-input">Password:</label>
+        <div data-montage-id="password-input"></div>
+        <div data-montage-id="repetition">
+            <div data-montage-id="key"></div>
+            <div data-montage-id="summary"></div>
+        </div>
+    </div>
+</body>
+</html>
