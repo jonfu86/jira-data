@@ -1,1 +1,55 @@
-.Main {}
+.Main {
+	position: absolute;
+    left: 0;
+    top: 30px;
+    bottom: 0;
+    right: 0;
+}
+
+.FeedbackDashboard-Form label{
+	display:block;
+}
+
+.FeedbackDashboard-Form input{
+	width:100%;
+}
+
+.FeedbackDashboard-Form{
+	position:absolute;
+    top: 0;
+    left: 5%;
+    /*transform: translateX(-50%);*/
+    max-width:30%;
+    text-align:left;
+}
+
+.FeedbackForm-content{
+	margin-top:30px;
+}
+
+.FeedbackForm-content-feedbackField{
+	display:block;
+	width:100%;
+}
+
+.FeedbackForm-footer{
+	margin-top:40px;
+}
+
+.returned-issues{
+	position:absolute;
+    top: 0;
+    right: 5%;
+    /*transform: translateX(-50%);*/
+    max-width:30%;
+    text-align:left;
+}
+
+/*.FeedbackForm-footer .success {
+	float:left;
+}
+
+.FeedbackForm-footer .submitButton{
+	float:right;
+}
+*/

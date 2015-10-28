@@ -11,7 +11,8 @@
             "owner": {
                 "properties": {
                     "element": {"#": "main"},
-                    "service": {"@": "service"}
+                    "service": {"@": "service"},
+                    "project": {"@": "projectField"}
                 }
             },
             "userInput": {
@@ -21,10 +22,89 @@
                 }
             },
             "passwordInput": {
-                "prototype": "digit/ui/text-field.reel",
+                "prototype": "montage/ui/text-field.reel",
                 "properties": {
                     "element": {"#": "password-input"}
                 }
+            },
+            "viewIssuesButton":{
+                "prototype": "digit/ui/button.reel",
+                "properties": {
+                    "element": {"#": "view-issues-button"},
+                    "label": "View Issues"
+                },
+                "listeners": [
+                    {"type": "action",
+                    "listener": {"@": "owner"}}
+                ]
+            },
+            "nameField": {
+                "prototype": "digit/ui/text-field.reel",
+                "properties": {
+                    "element": {"#": "nameField"},
+                    "delegate": {"@": "owner"}
+                },
+                "bindings": {
+                    "value": {
+                        "<-": "@owner.teacher.firstname + ' ' + @owner.teacher.lastname"
+                    }
+                }
+            },
+
+            "emailField": {
+                "prototype": "digit/ui/text-field.reel",
+                "properties": {
+                    "element": {"#": "emailField"},
+                    "delegate": {"@": "owner"}
+                },
+                "bindings": {
+                    "value": {
+                        "<-": "@owner.teacher.email"
+                    }
+                }
+            },
+
+            "projectField": {
+                "prototype": "digit/ui/text-field.reel",
+                "properties": {
+                    "element": {"#": "projectField"},
+                    "delegate": {"@": "owner"}
+                }
+            },
+
+            "subjectField": {
+                "prototype": "digit/ui/text-field.reel",
+                "properties": {
+                    "element": {"#": "subjectField"},
+                    "delegate": {"@": "owner"}
+                }
+            },
+
+            "feedbackField": {
+                "prototype": "digit/ui/text-area.reel",
+                "properties": {
+                    "element": {"#": "feedbackField"},
+                    "delegate": {"@": "owner"}
+                }
+            },
+
+            "successMessage": {
+                "prototype": "digit/ui/text.reel",
+                "properties": {
+                    "element": {"#": "success"}
+                }
+            },
+
+            "createIssueButton": {
+                "prototype": "digit/ui/button.reel",
+                "properties": {
+                    "element": {"#": "create-issue-button"},
+                    "label": "Create Issue"
+                },
+                "listeners": [
+                    {"type": "action",
+                    "listener": {"@": "owner"}}
+                ]
             },
             "repetition": {
                 "prototype": "montage/ui/repetition.reel",
@@ -61,11 +141,32 @@
 </head>
 <body>
     <div data-montage-id="main" data-montage-skin="light" class="Main">
-        <label for="user-input">User:</label>
-        <div data-montage-id="user-input"></div>
-        <label for="password-input">Password:</label>
-        <div data-montage-id="password-input"></div>
-        <div data-montage-id="repetition">
+        <div class= "FeedbackDashboard-Form">
+            <div class="FeedbackForm-header">
+                <label for="user-input">User:</label>
+                <input data-montage-id="user-input">
+                <label for="password-input">Password:</label>
+                <input data-montage-id="password-input" type="password" class="digit-TextField">
+            </div>
+            <div class="FeedbackForm-content">
+                <label for="nameField">Name:</label>
+                <div data-montage-id="nameField" class="FeedbackForm-content-nameField"></div>
+                <label for="emailField">Email:</label>
+                <div data-montage-id="emailField" class="FeedbackForm-content-emailField"></div>
+                <label for="projectField">Project:</label>
+                <div data-montage-id="projectField" class="FeedbackForm-content-projectField"></div>
+                <label for="subjectField">Subject:</label>
+                <div data-montage-id="subjectField" class="FeedbackForm-content-subjectField"></div>
+                <label for="feedbackField">Feedback:</label>
+                <div data-montage-id="feedbackField" class="FeedbackForm-content-feedbackField"></div>
+            </div>
+            <div class="FeedbackForm-footer">
+            <button data-montage-id="create-issue-button" class=""></button>
+            <div data-montage-id="view-issues-button"></div>
+            <div data-montage-id="success" class="success"></div>
+            </div>
+        </div>
+        <div data-montage-id="repetition" class="returned-issues">
             <div data-montage-id="key"></div>
             <div data-montage-id="summary"></div>
         </div>

@@ -16,7 +16,7 @@ exports.JiraService = DataService.specialize(/** @lends JiraService.prototype */
         value: function () { 
         	DataService.call(this);
          	this.addChildService(new IssueService());
-         	this.addChildService(new ProjectService());
+         	// this.addChildService(new ProjectService());
 
         }
     }

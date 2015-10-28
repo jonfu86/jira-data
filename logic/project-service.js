@@ -11,14 +11,12 @@ exports.ProjectService = RestService.specialize(/** @lends ProjectService.protot
 
     constructor: {
         value: function () {
-            // this.type = Project.TYPE;
+            
         }
     },
 
     type: {
-        // value: function () {
            value: Project.TYPE
-        // }
     },
 
     fetchRawData: {
