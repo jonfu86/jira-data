@@ -1,5 +1,5 @@
 var Montage = require("montage").Montage,
-    ObjectDescriptor = require("montage-data/logic/model/object-descriptor").ObjectDescriptor;
+    DataObjectDescriptor = require("montage-data/logic/model/data-object-descriptor").DataObjectDescriptor;
 
 /**
  * @class
@@ -7,12 +7,23 @@ var Montage = require("montage").Montage,
  */
     exports.Project = Montage.specialize(/** @lends Project.prototype */ {
 
+    key: {
+    	value: undefined
+    }
    
 
 }, {
 
     TYPE: {
-        get: ObjectDescriptor.getterFor(exports, "Project")
+        get: DataObjectDescriptor.getterFor(exports, "Project")
     },
+
+    withKey: {
+    	value: function (key) {
+    		var project = new this();
+    		project.key = key;
+    		return project;
+    	}
+    }
 
 });

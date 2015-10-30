@@ -1,5 +1,6 @@
 var RestService = require("montage-data/logic/service/rest-service").RestService,
-	Issue = require("logic/issue").Issue;
+	Issue = require("logic/issue").Issue,
+    User = require("logic/user").User;
 
 /**
  * Provides issue data.
@@ -12,59 +13,64 @@ exports.IssueService = RestService.specialize(/** @lends IssueService.prototype 
         value: Issue.TYPE
     },
 
-    project: {
-        value: null
+    authorization: {
+        value: undefined
     },
 
-	url: { 
-		value: "https://jira-montage-dev.mybluemix.net/ticket"
-	},
+    url: { 
+        value: "https://jira-montage-dev.mybluemix.net/ticket"
+    },
 
     fetchRawData: {
         value: function (stream) {
-        console.log(stream) 
-        	var self = this,
-        		project = stream.selector.criteria.project,
-                auth = stream.selector.criteria.authorization,
-        		url = this.url + "?jql=project=" + project + "&maxResults=-1",
-        		header = {
-                    "Authorization": "Basic " + auth,
+            var self = this,
+                project = stream.selector.criteria.project,
+                url = this.url + "?jql=project=" + project + "&maxResults=-1",
+                header = {
+                    "Authorization": "Basic " + User.currentUser.authorization,
                     "x-trust-my-name": "true"
-                };
+                };             
 
-            console.log(stream.selector.criteria.authorization);              
-            console.log(project);              
-
-        	this.fetchRestData(url, header).then(function (data) { 
-        		self.addRawData(stream, data.issues);
-        		self.rawDataDone(stream);
-                // console.log(this.newIssue);
-        	});
+            this.fetchRestData(url, header).then(function (data) { 
+                self.addRawData(stream, data.issues);
+                self.rawDataDone(stream);
+            });
         }
     },
 
-    mapRawData: {
+    saveRawData: {
+        value: function (data, issue) {
+            var self = this,
+                url = this.url,
+                header = {
+                    "Authorization": "Basic " + User.currentUser.authorization,
+                    "x-trust-my-name": "true",
+                    "Content-Type": "application/json"
+                },
+                body = JSON.stringify(data);             
+
+            this.fetchRestData(url, header, body).then(function (data) { 
+                issue.key = data.key;
+            });
+        }
+    },
+
+    mapFromRawData: {
         value: function (issue, data) {
             issue.key = data.key;
             issue.summary = data.fields.summary;
-
         }
-    // },
+    },
 
-    // createIssue: {
-    //     value: function(stream, myIssue) {
-    //         var self = this,
-    //             project = stream.selector.criteria.project,
-    //             url = this.url,
-    //             header = {"Authorization": "Basic "+ this.auth , "x-trust-my-name": "true"};
-
-    //         this.fetchRestData(url, header, myIssue).then(function (data){
-    //             self.addRawData(stream, data.issues);
-    //             self.rawDataDone(stream);
-    //             return null;
-    //         });
-
-    //     }
+    mapToRawData: {
+        value: function (issue, data) {
+            data.fields = {
+                project: {key: issue.project.key},
+                summary: issue.summary || "",
+                description: issue.description || "",
+                issuetype: {id: issue.type.id}
+            };
+        }
     }
 
 });

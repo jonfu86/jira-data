@@ -25,7 +25,7 @@ exports.ProjectService = RestService.specialize(/** @lends ProjectService.protot
         }
     },
 
-    mapRawData: {
+    mapFromRawData: {
         value: function (userObject, userData) {
 
         }
