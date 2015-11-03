@@ -15,18 +15,30 @@
                     "project": {"@": "projectField"}
                 }
             },
+
             "userInput": {
                 "prototype": "digit/ui/text-field.reel",
                 "properties": {
                     "element": {"#": "user-input"}
                 }
             },
+
             "passwordInput": {
                 "prototype": "montage/ui/text-field.reel",
                 "properties": {
                     "element": {"#": "password-input"}
                 }
             },
+
+            "projectField": {
+                "prototype": "digit/ui/text-field.reel",
+                "properties": {
+                    "element": {"#": "projectField"},
+                    "delegate": {"@": "owner"},
+                    "value": "HIVESCHOOL"
+                }
+            },
+
             "viewIssuesButton":{
                 "prototype": "digit/ui/button.reel",
                 "properties": {
@@ -38,6 +50,7 @@
                     "listener": {"@": "owner"}}
                 ]
             },
+
             "nameField": {
                 "prototype": "digit/ui/text-field.reel",
                 "properties": {
@@ -64,13 +77,6 @@
                 }
             },
 
-            "projectField": {
-                "prototype": "digit/ui/text-field.reel",
-                "properties": {
-                    "element": {"#": "projectField"},
-                    "delegate": {"@": "owner"}
-                }
-            },
 
             "subjectField": {
                 "prototype": "digit/ui/text-field.reel",
@@ -147,14 +153,14 @@
                 <input data-montage-id="user-input">
                 <label for="password-input">Password:</label>
                 <input data-montage-id="password-input" type="password" class="digit-TextField">
+                <label for="projectField">Project:</label>
+                <div data-montage-id="projectField" class="FeedbackForm-content-projectField"></div>
             </div>
             <div class="FeedbackForm-content">
                 <label for="nameField">Name:</label>
                 <div data-montage-id="nameField" class="FeedbackForm-content-nameField"></div>
                 <label for="emailField">Email:</label>
                 <div data-montage-id="emailField" class="FeedbackForm-content-emailField"></div>
-                <label for="projectField">Project:</label>
-                <div data-montage-id="projectField" class="FeedbackForm-content-projectField"></div>
                 <label for="subjectField">Subject:</label>
                 <div data-montage-id="subjectField" class="FeedbackForm-content-subjectField"></div>
                 <label for="feedbackField">Feedback:</label>
