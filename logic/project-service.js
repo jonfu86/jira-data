@@ -1,13 +1,13 @@
-var RestService = require("montage-data/logic/service/rest-service").RestService,
+var HttpService = require("montage-data/logic/service/http-service").HttpService,
     Project = require("logic/project").Project;
 
 /**
  * Provides project data.
  *
  * @class
- * @extends external:RestService
+ * @extends external:HttpService
  */
-exports.ProjectService = RestService.specialize(/** @lends ProjectService.prototype */{
+exports.ProjectService = HttpService.specialize(/** @lends ProjectService.prototype */{
 
     constructor: {
         value: function () {

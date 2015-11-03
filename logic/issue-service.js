@@ -1,4 +1,4 @@
-var RestService = require("montage-data/logic/service/rest-service").RestService,
+var HttpService = require("montage-data/logic/service/http-service").HttpService,
 	Issue = require("logic/issue").Issue,
     User = require("logic/user").User;
 
@@ -6,9 +6,9 @@ var RestService = require("montage-data/logic/service/rest-service").RestService
  * Provides issue data.
  *
  * @class
- * @extends external:RestService
+ * @extends external:HttpService
  */
-exports.IssueService = RestService.specialize(/** @lends IssueService.prototype */{
+exports.IssueService = HttpService.specialize(/** @lends IssueService.prototype */{
     type: {
         value: Issue.TYPE
     },
@@ -31,7 +31,7 @@ exports.IssueService = RestService.specialize(/** @lends IssueService.prototype 
                     "x-trust-my-name": "true"
                 };             
 
-            this.fetchRestData(url, header).then(function (data) { 
+            this.fetchHttpData(url, header).then(function (data) { 
                 self.addRawData(stream, data.issues);
                 self.rawDataDone(stream);
             });
@@ -47,9 +47,9 @@ exports.IssueService = RestService.specialize(/** @lends IssueService.prototype 
                     "x-trust-my-name": "true",
                     "Content-Type": "application/json"
                 },
-                body = JSON.stringify(data);             
+                body = JSON.stringify(data);          
 
-            this.fetchRestData(url, header, body).then(function (data) { 
+            this.fetchHttpData(url, header, body).then(function (data) { 
                 issue.key = data.key;
             });
         }

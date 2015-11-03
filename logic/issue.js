@@ -37,7 +37,7 @@ exports.Issue = Montage.specialize(/** @lends Issue.prototype */ {
 
     Type: {
         get: Enumeration.getterFor("_Type", "id", "name", /** @lends Issue.Type */ {
-			TASK: ["1", "Task"]
+			TASK: ["3", "Task"]
 		})
   
     }
