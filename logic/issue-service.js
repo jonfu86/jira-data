@@ -31,7 +31,8 @@ exports.IssueService = HttpService.specialize(/** @lends IssueService.prototype 
                     "x-trust-my-name": "true"
                 };             
 
-            this.fetchHttpData(url, header).then(function (data) { 
+            console.log(this);
+            this.sendHttpRequest(url, header).then(function (data) { 
                 self.addRawData(stream, data.issues);
                 self.rawDataDone(stream);
             });
@@ -49,7 +50,7 @@ exports.IssueService = HttpService.specialize(/** @lends IssueService.prototype 
                 },
                 body = JSON.stringify(data);          
 
-            this.fetchHttpData(url, header, body).then(function (data) { 
+            this.sendHttpRequest(url, header, body).then(function (data) { 
                 issue.key = data.key;
             });
         }
